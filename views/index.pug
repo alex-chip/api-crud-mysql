@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  include blocks/header
+    
+  article.item
+    if(data.length)
+      .table-container
+        table.table
+          tr
+            th Id
+            th Título
+            th Año
+            th Puntuación
+            th Poster
+            th(colspan="2")
+              form.table-form(action="/agregar" method="GET")
+                input.button.add(type="submit", value="Agregar")
+          each movie in data
+            tr
+              td #{movie.movie_id}
+              td #{movie.title}
+              td #{movie.release_year}
+              td #{movie.rating}
+              td: img.poster(src=movie.image, alt=movie.title)
+              td
+                form(action=`/editar/${movie.movie_id}`, method="GET")
+                  input.button.update(type="submit", value="Editar")
+              td
+                form(action=`/eliminar/${movie.movie_id}`, method="POST")
+                  input.button.delete(type="button", value="Eliminar" onclick="eliminar(this)")
+        script.
+          function eliminar(input) {
+            let deleteOk = confirm('Estas seguro de eliminar la pelicula?')
+            return (deleteOk) ? input.parentNode.submit() : false
+          }
+    else
+      p.error No existen Datos
+  
+  include blocks/footer

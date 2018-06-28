@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  article.container
+    .item.center
+      h2=title
+      p=description
+      a.button.regresar(href="/") Regresar
+      pre.error.left
+        code #{error.stack}
+      
