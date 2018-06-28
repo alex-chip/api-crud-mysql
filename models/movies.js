@@ -3,7 +3,7 @@ const mysql = require('mysql'),
     dbOptions = {
         host: 'localhost',
         user: 'root',
-        password: 'AlexChip32',
+        password: 'password',
         port: 3306,
         database: 'movies'
     },
